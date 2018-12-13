@@ -26,16 +26,10 @@ var mekanSema = new mongoose.Schema(
         adres:String,
         puan:{type:Number, default:0,min:0,max:5},
         imkanlar:[String],
-        koordinatlar: {
-            type: {
-                type: String
-            },
-            enlemboylam: [Number]
-        },
+        koordinatlar:{type:[Number],index:'2dsphere'},
         saatler:[saatSema],
         yorumlar:[yorumSema]
     },{usePushEach: true}
     ); 
-mekanSema.index({koordinatlar: '2dsphere'});
 //Şemayı derle ve model oluştur. mekan doküman adı, mekanlar koleksiyon adı
 mongoose.model('mekan',mekanSema,'mekanlar');
