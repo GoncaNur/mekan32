@@ -42,8 +42,8 @@ block content
               h2.panel-title Konum Bilgisi
             .panel-body
               //Harita eklemek için Google'dan API anahtarı almanız gerekiyor. key kısmından sonra yer alan kısım API KEY.
-              -var enlem=37.781406
-              -var boylam=30.565119
+              -var enlem=mekanBilgisi.koordinatlar.enlem
+              -var boylam=mekanBilgisi.koordinatlar.boylam
               img.img-responsive.img-rounded(src='http://maps.googleapis.com/maps/api/staticmap?center='+enlem+','+boylam+'&zoom=12&size=600x400&markers='+enlem+','+boylam+'&key=AIzaSyCmmKygTpBzHGOZEciJpAdxC9v_tWHagnE')
       .row
         .col-xs-12
