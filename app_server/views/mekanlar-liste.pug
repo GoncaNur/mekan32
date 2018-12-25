@@ -11,6 +11,7 @@ block content
   .row
     //mobil uyumlu listeleme
     .col-xs-12.col-sm-12
+    .error=mesaj
       //Liste grubu oluştur
       each mekan in mekanlar
         .row.list-group
@@ -19,7 +20,8 @@ block content
          .col-xs-12.list-group-item
              //Linklerin, yıldızların ve adresin oluşturulması
              h4
-               a(href='/mekan/')= mekan.ad
+               -var mekanid=mekan.id
+               a(href='/mekan/'+mekanid)= mekan.ad
                small &nbsp;
                +puanOlustur(mekan.puan)               
              span.badge.pull-right.badge-default= mekan.mesafe

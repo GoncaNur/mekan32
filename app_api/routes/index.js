@@ -8,6 +8,10 @@ router
 .route('/mekanlar')
 .get(ctrlMekanlar.mekanlariListele)
 .post(ctrlMekanlar.mekanEkle);
+
+router
+.route('/tummekanlar')
+.get(ctrlMekanlar.tumMekanlariListele)
 //mekana ait işlemler
 //ID'sine göre mekan getir, güncelle,sil
 router

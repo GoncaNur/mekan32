@@ -40,12 +40,35 @@ const mekanlariListele= async(req, res) =>{
             adres:sonuc.adres,
             puan:sonuc.puan,
             imkanlar:sonuc.imkanlar,
-            mesafe: sonuc.mesafe.toFixed()+'m'
+            mesafe: sonuc.mesafe.toFixed()
         } })
         cevapOlustur (res, 200, mekanlar);
     }catch(hata){
         cevapOlustur(res,404,hata); }
 }
+
+const tumMekanlariListele= function (req, res) {
+        Mekan.find({},'ad adres puan imkanlar _id',function(hata, sonuclar) {
+      //dönen sonuçları tutacağımız diziyi tanımla
+      var mekanlar = [];
+      if (hata) {
+        cevapOlustur (res, 404, hata);
+      } else {
+        //her bir sonucu dolaş ve mekanlara ekle
+        sonuclar.forEach(function(doc) {
+            mekanlar.push(
+            {
+                ad: doc.ad,
+                adres: doc.adres,
+                puan: doc.puan,
+                imkanlar: doc.imkanlar,
+                id: doc._id
+            }); });
+        //json formatında mekanları döndür
+        cevapOlustur(res, 200, mekanlar);
+    }
+});
+};
 
 const mekanEkle= function (req, res) {
         Mekan.create({
@@ -155,6 +178,7 @@ const mekanSil= function (req, res) {
 
 module.exports = {
   mekanlariListele,
+  tumMekanlariListele,
   mekanEkle,
   mekanGetir,
   mekanGuncelle,
